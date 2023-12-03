@@ -11,10 +11,11 @@ image_dirname = dirname + "/image/"
 if not any(filename.endswith(('.png', '.jpg')) for filename in os.listdir(image_dirname)):
   print("対象ファイルが存在しません。処理を終了します。")
 else:
-  img_path = os.path.join(image_dirname, filename)
-  img = Image.open(img_path)
-  # Use tesseract to do OCR on the image
-  text = pytesseract.image_to_string(img, lang='jpn')
-  # Print the text from each image
-  print(f'対象ファイル：{filename}:\n{text}\n')
-  print("================================================")
+  for filename in os.listdir(image_dirname):
+    img_path = os.path.join(image_dirname, filename)
+    img = Image.open(img_path)
+    # Use tesseract to do OCR on the image
+    text = pytesseract.image_to_string(img, lang='jpn')
+    # Print the text from each image
+    print(f'対象ファイル：{filename}:\n{text}\n')
+    print("================================================")
